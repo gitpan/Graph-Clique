@@ -15,7 +15,7 @@ our %EXPORT_TAGS = (all  => \@EXPORT,
                     test => \@EXPORT_OK,
                    );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 # Below is stub documentation for your module. You'd better edit it!
 
@@ -25,23 +25,24 @@ Graph::Clique - Return all k-cliques in a graph
 
 =head1 SYNOPSIS
 
-use Graph::Clique;
+  use Graph::Clique;
+  
+  #Edges in the form of LoL (numerical values required)
+  my @edges = (
+      [1,2], [1,3], [1,4], [1,5],
+      [2,3], [2,4],
+      [3,4],
+      [5,6], [5,7], [5,9],
+      [6,9],
+      [7,8],
+      [8,9],
+  );
 
-my @edges = (
-    [1,2], [1,3], [1,4], [1,5],
-    [2,3], [2,4],
-    [3,4],
-    [5,6], [5,7], [5,9],
-    [6,9],
-    [7,8],
-    [8,9],
-);
+  my  $k = shift || 3;
 
-my  $k = shift || 3;
+  my @cliques = getcliques($k,\@edges);
 
-my @cliques = getcliques($k,\@edges);
-
-print join("\n", @cliques), "\n"; 
+ print join("\n", @cliques), "\n"; 
 
  #Output:
  #1 2 3
@@ -64,7 +65,7 @@ of edges according to your predefined threshold, rather than exhaustively search
 
 =head1 ACKNOWLEDGEMENT
 
-Greg Bacon who started all this, Mike Mikero 
+Greg Bacon who started all this, Mike Rosulek
 and Roy Johnson for his advice on ways to return all k-cliques.
 Finally all guys in Perlmonks.org, and  beginners.perl who has helped
 me in many ways.
